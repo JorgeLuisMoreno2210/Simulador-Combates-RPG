@@ -1,0 +1,683 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+/* Variables globales */
+:root {
+  --color-primary: #ff7800;
+  --color-secondary: #041562;
+  --color-accent: #5D8BF4;
+  --color-text: #ffffff;
+  --color-background: #0a0a2a;
+  --color-fuego: #FF5722;
+  --color-agua: #2196F3;
+  --color-tierra: #4CAF50;
+  --border-pixel: 4px solid #000;
+  --shadow-nes: 4px 4px 0 rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos generales */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  background-color: var(--color-background);
+  background-image: url('./assets/background-pattern.png');
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: all 0.5s ease;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes pixelate {
+  0% { filter: blur(0px); }
+  50% { filter: blur(1px); }
+  100% { filter: blur(0px); }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes flotar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s forwards;
+}
+
+.fadeOut {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* Bordes con efecto pixel art */
+.pixel-border {
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-nes);
+  image-rendering: pixelated;
+}
+
+/* Pantalla de inicio */
+#pantalla-inicio {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-secondary);
+  background-image: url('./assets/start-background.png');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo-container {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.logo {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 48px;
+  color: var(--color-primary);
+  text-shadow: 4px 4px 0px #000000, 8px 8px 0px #000000;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+.subtitulo-logo {
+  font-size: 24px;
+  margin-bottom: 30px;
+  animation: blink 1.2s infinite;
+}
+
+/* Secciones principales */
+section {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1000px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Contenedor estilo NES */
+.pantalla-nes {
+  background-color: var(--color-secondary);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-nes);
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Títulos */
+.titulo {
+  font-family: 'Press Start 2P', cursive;
+  color: var(--color-primary);
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 0px #000000;
+  letter-spacing: 2px;
+}
+
+.subtitulo {
+  font-family: 'Press Start 2P', cursive;
+  color: var(--color-text);
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Botones estilo NES */
+.boton-nes {
+  background-color: var(--color-primary);
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 #000000;
+  padding: 8px 16px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-transform: uppercase;
+}
+
+.boton-nes:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 0 #000000;
+}
+
+.boton-nes:active, .boton-presionado {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000000;
+}
+
+/* Tarjetas de selección */
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.tarjeta-de-mokepon {
+  width: 180px;
+  height: 200px;
+  background: #11468F;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-de-mokepon:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, var(--color-fuego), var(--color-agua), var(--color-tierra));
+}
+
+.tarjeta-de-mokepon:hover {
+  transform: translateY(-5px);
+}
+
+.tarjeta-de-mokepon p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.tarjeta-de-mokepon img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: flotar 3s ease-in-out infinite;
+}
+
+/* Inputs y labels */
+input {
+  display: none;
+}
+
+input:checked + label {
+  background-color: var(--color-accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Sección del mapa */
+#ver-mapa {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mapa-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-nes);
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+#mapa {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* Controles de movimiento */
+.controles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.controles-fila {
+  display: flex;
+  gap: 10px;
+}
+
+.control-arrow {
+  margin: 5px;
+}
+
+.control-arrow button {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.instrucciones {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* Sección de batalla */
+#seleccionar-ataque {
+  display: none;
+}
+
+.batalla-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.jugador-info, .enemigo-info {
+  flex: 1;
+  min-width: 200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: var(--border-pixel);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.batalla-central {
+  flex: 2;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mensaje-batalla {
+  width: 100%;
+  background-color: #000;
+  border: var(--border-pixel);
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#resultado {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  color: #fff;
+}
+
+/* Vidas y mascotas */
+.jugador-stats, .enemigo-stats {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.vidas-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+#vidas-jugador, #vidas-enemigo {
+  font-size: 24px;
+  margin-left: 10px;
+  color: var(--color-primary);
+}
+
+.nombre-mascota {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  color: var(--color-accent);
+}
+
+/* Historial de ataques */
+.historial-ataques {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px solid #000;
+  padding: 10px;
+  min-height: 150px;
+  border-radius: 5px;
+}
+
+/* Botones de ataque */
+.tarjetas-ataques {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.boton-de-ataque {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-secondary);
+  border: 3px solid #000;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-de-ataque:hover {
+  transform: scale(1.1);
+}
+
+/* Reiniciar sección */
+.reiniciar-seccion {
+  text-align: center;
+  margin-top: 20px;
+  display: none;
+}
+
+/* Animaciones específicas para ataques */
+.ataque-texto {
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-weight: bold;
+  animation: fadeIn 0.5s;
+}
+
+.ataque-texto.fuego {
+  background-color: var(--color-fuego);
+  color: white;
+}
+
+.ataque-texto.agua {
+  background-color: var(--color-agua);
+  color: white;
+}
+
+.ataque-texto.tierra {
+  background-color: var(--color-tierra);
+  color: white;
+}
+
+/* Animaciones de ataque */
+.ataque-animacion {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s, fadeOut 0.5s 0.2s;
+}
+
+.ataque-animacion.fuego {
+  background-image: url('./assets/ataque-fuego.png');
+}
+
+.ataque-animacion.agua {
+  background-image: url('./assets/ataque-agua.png');
+}
+
+.ataque-animacion.tierra {
+  background-image: url('./assets/ataque-tierra.png');
+}
+
+/* Animación VS */
+.vs-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.vs-animation.active {
+  opacity: 1;
+}
+
+.vs-animation span {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 80px;
+  color: var(--color-primary);
+  text-shadow: 5px 5px 0 #000, -5px -5px 0 #000, 5px -5px 0 #000, -5px 5px 0 #000;
+  animation: pulsar 0.5s infinite alternate;
+}
+
+/* Animación de ronda */
+.round-animation {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border: var(--border-pixel);
+  border-radius: 10px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.round-animation.active {
+  opacity: 1;
+}
+
+.round-animation span {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px;
+  color: white;
+}
+
+/* Animación resultado */
+.resultado-final {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  animation: fadeIn 1s;
+}
+
+.resultado-final.victoria {
+  background-color: rgba(76, 175, 80, 0.3);
+  border: 2px solid var(--color-tierra);
+}
+
+.resultado-final.derrota {
+  background-color: rgba(244, 67, 54, 0.3);
+  border: 2px solid var(--color-fuego);
+}
+
+.resultado-final.empate {
+  background-color: rgba(33, 150, 243, 0.3);
+  border: 2px solid var(--color-agua);
+}
+
+.resultado-final h3 {
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Fuegos artificiales */
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.firework {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, white, yellow, orange, red);
+  box-shadow: 0 0 20px 10px rgba(255, 200, 0, 0.8);
+  transform: scale(0);
+  animation: explode 1s forwards;
+}
+
+@keyframes explode {
+  0% { transform: scale(0); opacity: 1; }
+  50% { transform: scale(5); opacity: 0.8; }
+  100% { transform: scale(10); opacity: 0; }
+}
+
+/* Alerta estilo Nintendo */
+.alerta-nintendo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.alerta-contenido {
+  background-color: var(--color-secondary);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-nes);
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.alerta-contenido p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.boton-alerta {
+  background-color: var(--color-primary);
+  border: 3px solid #000;
+  padding: 8px 20px;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+}
+
+/* Modo secreto (Konami Code) */
+.modo-secreto {
+  background-color: #000;
+  background-image: url('./assets/secret-background.png');
+}
+
+.modo-secreto .boton-nes {
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+  border-color: white;
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .batalla-container {
+    flex-direction: column;
+  }
+  
+  .jugador-info, .enemigo-info, .batalla-central {
+    width: 100%;
+  }
+  
+  .tarjeta-de-mokepon {
+    width: 150px;
+    height: 180px;
+  }
+  
+  .titulo {
+    font-size: 24px;
+  }
+  
+  .subtitulo {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .tarjetas {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 36px;
+  }
+  
+  .boton-de-ataque {
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 300px) {
+  .controles-fila {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .boton-nes {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

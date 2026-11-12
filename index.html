@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>MOKEPON!</title>
+        <link rel="stylesheet" href="./styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Pantalla de inicio con logo -->
+        <section id="pantalla-inicio">
+            <div class="logo-container">
+                <h1 class="logo">MOKEPON</h1>
+                <p class="subtitulo-logo">Press START to begin</p>
+                <button id="boton-start" class="boton-nes">START</button>
+            </div>
+        </section>
+
+        <!-- Selección de mascota -->
+        <section id="seleccionar-mascota">
+            <div class="pantalla-nes">
+                <h1 class="titulo">MOKEPON</h1>
+                <h2 class="subtitulo">Elige tu mascota:</h2>
+                
+                <div id='contenedorTarjetas' class="tarjetas">
+                    <!-- Las tarjetas se cargan dinámicamente con JavaScript -->
+                </div>
+                
+                <button id="boton-mascota" class="boton-nes">Seleccionar</button>
+            </div>
+        </section>
+
+        <!-- Mapa del juego -->
+        <section id="ver-mapa">
+            <h2 class="subtitulo">Recorre el mapa con tu mokepon</h2>
+            
+            <div class="mapa-container">
+                <canvas id="mapa"></canvas>
+            </div>
+            
+            <div class="controles">
+                <div class="control-arrow up">
+                    <button
+                        ontouchend="detenerMovimiento()"  
+                        onmouseup="detenerMovimiento()"
+                        onmousedown="moverArriba()"
+                        ontouchstart="moverArriba()"
+                        class="boton-nes"
+                    >↑</button>
+                </div>
+                <div class="controles-fila">
+                    <div class="control-arrow left">
+                        <button
+                            onmouseup="detenerMovimiento()"
+                            ontouchend="detenerMovimiento()"
+                            onmousedown="moverIzquierda()"
+                            ontouchstart="moverIzquierda()"
+                            class="boton-nes"
+                        >←</button>
+                    </div>
+                    <div class="control-arrow down">
+                        <button
+                            onmouseup="detenerMovimiento()"
+                            ontouchend="detenerMovimiento()"
+                            onmousedown="moverAbajo()"
+                            ontouchstart="moverAbajo()"
+                            class="boton-nes"
+                        >↓</button>
+                    </div>
+                    <div class="control-arrow right">
+                        <button
+                            onmouseup="detenerMovimiento()"
+                            ontouchend="detenerMovimiento()"
+                            onmousedown="moverDerecha()"
+                            ontouchstart="moverDerecha()"
+                            class="boton-nes"
+                        >→</button>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="instrucciones">También puedes usar las flechas del teclado ↑ ↓ ← →</p>
+        </section>
+
+        <!-- Selección de ataque -->
+        <section id="seleccionar-ataque">
+            <div class="pantalla-nes batalla">
+                <h1 class="titulo">MOKEPON</h1>
+                <h2 class="subtitulo">¡Batalla!</h2>
+                
+                <div class="batalla-container">
+                    <div class="jugador-info">
+                        <div class="jugador-stats">
+                            <p class="vidas-label">Victorias:<span id="vidas-jugador">0</span></p>
+                            <p class="nombre-mascota" id="mascota-jugador"></p>
+                        </div>
+                        <div id="ataques-del-jugador" class="historial-ataques"></div>
+                    </div>
+                    
+                    <div class="batalla-central">
+                        <div id="mensajes" class="mensaje-batalla">
+                            <p id="resultado">¡Prepárate para la batalla!</p>
+                        </div>
+                        
+                        <div id="contenedorAtaques" class="tarjetas-ataques">
+                            <!-- Los botones de ataque se cargan dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="enemigo-info">
+                        <div class="enemigo-stats">
+                            <p class="vidas-label">Victorias:<span id="vidas-enemigo">0</span></p>
+                            <p class="nombre-mascota" id="mascota-enemigo"></p>
+                        </div>
+                        <div id="ataques-del-enemigo" class="historial-ataques"></div>
+                    </div>
+                </div>
+                
+                <section id="reiniciar" class="reiniciar-seccion">
+                    <button id="boton-reiniciar" class="boton-nes">Reiniciar</button>
+                </section>
+            </div>
+        </section>
+
+        <!-- Conexiones de script -->
+        <script src="./js/mokepon.js"></script>
+        <audio id="bgm-main" loop>
+            <source src="./assets/audio/main-theme.mp3" type="audio/mpeg">
+        </audio>
+    </body>
+</html>
